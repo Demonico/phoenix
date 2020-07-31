@@ -1,5 +1,6 @@
 import React from 'react'
 import clsx from 'clsx'
+import { Link } from 'react-router-dom'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import Drawer from '@material-ui/core/Drawer'
 import AppBar from '@material-ui/core/AppBar'
@@ -17,6 +18,9 @@ import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
 import InboxIcon from '@material-ui/icons/MoveToInbox'
 import MailIcon from '@material-ui/icons/Mail'
+import AssignmentIndIcon from '@material-ui/icons/AssignmentInd'
+import PersonIcon from '@material-ui/icons/Person'
+import ShopTwoIcon from '@material-ui/icons/ShopTwo'
 
 const drawerWidth = 240
 
@@ -82,6 +86,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
+const links = [
+  { text: 'Employee', path: '/employee', icon: AssignmentIndIcon },
+  { text: 'Custoner', path: '/customer', icon: PersonIcon },
+  { text: 'Orders', path: '/orders', icon: ShopTwoIcon },
+]
+
 export default function MiniDrawer({ children }) {
   const classes = useStyles()
   const theme = useTheme()
@@ -145,23 +155,14 @@ export default function MiniDrawer({ children }) {
         </div>
         <Divider />
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
+          {links.map((elem) => (
+            <ListItem button key={elem.text}>
+              <Link to={elem.path}>
+                <ListItemIcon>
+                  <elem.icon />
+                </ListItemIcon>
+              </Link>
+              <ListItemText primary={elem.text} />
             </ListItem>
           ))}
         </List>
