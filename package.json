@@ -20,7 +20,7 @@
     "start": "react-scripts start",
     "start:netlify": "netlify dev -f=src/lambda",
     "build": "CI= react-scripts build",
-    "build:netlify": "netlify build -f=src/lambda",
+    "build:netlify": "netlify build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
